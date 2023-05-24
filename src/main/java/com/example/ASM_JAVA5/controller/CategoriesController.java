@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/categories")
+@RequestMapping("/admin/categories")
 public class CategoriesController {
 //    @GetMapping("/categories")
 //    public ModelAndView home(){
@@ -35,19 +35,19 @@ public class CategoriesController {
     @PostMapping("/add")
     public String add(@ModelAttribute("add") Categories categories){
         categoriesService.insert(categories);
-        return "redirect:/categories/view";
+        return "redirect:/admin/categories/view";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer id){
         categoriesService.delete(id);
-        return "redirect:/categories/view";
+        return "redirect:/admin/categories/view";
     }
 
     @PostMapping("/update/{id}")
     public String update(@PathVariable("id") Integer id, @ModelAttribute("categories") Categories categories) {
         categoriesService.update(id, categories);
-        return "redirect:/categories/view";
+        return "redirect:/admin/categories/view";
     }
 
     @GetMapping("/edit/{id}")
