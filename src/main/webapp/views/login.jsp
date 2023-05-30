@@ -98,11 +98,12 @@
                 <input type="password" id="password" name="pass" class="form-control" placeholder="Password" required>
             </div>
             <button type="submit" class="btn-login">Login</button>
-            <div class="login-links">
-                <a href="#">Register</a>
-                <a href="#">Forgot Password</a>
-            </div>
+
         </form>
+        <div class="login-links">
+            <a href="/register">Register</a>
+            <a href="#">Forgot Password</a>
+        </div>
     </div>
 
 </form>

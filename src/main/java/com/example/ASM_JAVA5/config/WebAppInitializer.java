@@ -14,8 +14,11 @@ public class WebAppInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         FilterRegistration.Dynamic filterRegistration = servletContext.addFilter("authenticationFilter", new AuthenticationFilter());
-        filterRegistration.addMappingForUrlPatterns(null, false, "/*"); // Ánh xạ tất cả cho các URL
+//        filterRegistration.addMappingForUrlPatterns(null, false, "/*");
+        filterRegistration.addMappingForUrlPatterns(null, false, "/admin/**");
+        filterRegistration.addMappingForUrlPatterns(null, false, "/user/**");
+//        filterRegistration.addMappingForUrlPatterns(null, false, "/user/*");
 
-
+       // Ánh xạ tất cả cho các URL
     }
 }

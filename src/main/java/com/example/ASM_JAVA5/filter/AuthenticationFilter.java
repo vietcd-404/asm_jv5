@@ -24,12 +24,18 @@ public class AuthenticationFilter implements Filter {
 
         HttpSession session = httpRequest.getSession(false);
         String loginURI = httpRequest.getContextPath() + "/login";
-        String homeURI = httpRequest.getContextPath() + "/home";
+        String registerURI = httpRequest.getContextPath() + "/register";
+        System.out.println(httpRequest.getRemoteHost());
+        System.out.println(httpRequest.getRemotePort());
+        System.out.println(httpRequest.getRequestURI());
 
         boolean loggedIn = session != null && session.getAttribute("account") != null;
         boolean loginRequest = httpRequest.getRequestURI().equals(loginURI);
+        boolean registerRequest = httpRequest.getRequestURI().equals(registerURI);
 
-        if (loggedIn || loginRequest) {
+
+
+        if (loggedIn || loginRequest || registerRequest) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
             httpResponse.sendRedirect(loginURI);

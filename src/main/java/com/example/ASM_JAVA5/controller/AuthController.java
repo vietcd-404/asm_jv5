@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,10 +16,10 @@ public class AuthController {
     @Autowired
     private AccountService accountService;
 
-    @GetMapping("/")
-    public String showLoginPage() {
-        return "login";
-    }
+//    @GetMapping("/")
+//    public String showLoginPage() {
+//        return "login";
+//    }
 
     @PostMapping("/login")
     public String login(@RequestParam("username") String username,
@@ -44,6 +45,17 @@ public class AuthController {
         return "login";
     }
 
+    @GetMapping("/register")
+    public String showRegister(Model model) {
+        model.addAttribute("account", new Account());
+        return "dangKy";
+    }
+    @PostMapping("/register")
+    public String add(@ModelAttribute("account") Account account) {
+        account.setRole(1);
+        accountService.insert(account);
+        return "redirect:/";
+    }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {

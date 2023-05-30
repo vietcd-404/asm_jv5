@@ -20,11 +20,11 @@
         <c:forEach var="list" items="${list}">
             <div class="col-md-3 " style="margin-bottom: 35px">
                 <div class="card" style="width: 18rem;">
-                    <img src="${list.image}" class="card-img-top">
+                   <a href="/user/product/detail/${list.id}"><img src="${list.image}" class="card-img-top"></a>
                         <%--            <img src="../../assets/img/product-01.jpg" class="card-img-top" >--%>
                     <div class="card-body">
                         <h5 class="card-title">${list.name}</h5>
-
+                        <p class="card-text">${list.price}</p>
                         <div style="text-align: center">
                             <a href="#" class="btn btn-primary">Add to cart</a>
                         </div>
@@ -34,17 +34,15 @@
         </c:forEach>
     </div>
     <nav aria-label="Page navigation example">
-        <%--    <ul class="pagination">--%>
-
-        <%--        <li class="page-item"><a class="page-link" href="#">1</a></li>--%>
-
-        <%--       --%>
-        <%--    </ul>--%>
         <ul class="pagination">
+
             <li class="page-item">
+                <c:if test="${totalPage > 1} ">
                 <a href="${pageContext.request.contextPath}/user/product/view?pageNum=${totalPage - 1}"
                    class="page-link">Previous</a>
+                </c:if>
             </li>
+
             <c:forEach begin="1" end="${totalPage}" varStatus="status">
                 <li class="page-item">
                     <a href="${pageContext.request.contextPath}/user/product/view?pageNum=${status.index}"
